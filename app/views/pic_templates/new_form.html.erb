@@ -1,1 +1,11 @@
-<h1>Hi new_form</h1>
+<%= form_for @photo, url: {action:'create_row'} do |f|%>
+  <div>
+    <%= f.label :source, "Image URL" %>
+    <%= f.text_field :source %>
+  </div>
+  <div>
+    <%= f.label :caption, "Caption" %>
+    <%= f.text_field :caption %>
+  </div>
+  <%= submit_tag 'Create Photo' %>
+<% end %>

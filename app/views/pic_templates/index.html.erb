@@ -1,1 +1,16 @@
-<h1>Hi index</h1>
+<div class="container">
+   <div class="col-md-6">
+      <h1>All Photos</h1>
+      <%= link_to "Add a new photo", photos_new_path %>
+      <% @photos.each do |photo| %>
+         <div class="thumbnail">
+            <%= image_tag(photo.source) %>
+            <div class="caption">
+               <%= link_to "Show Details", {controller: 'pictures', action: 'show', id: photo.id}, class: "btn btn-default btn-block"%>
+               <%= link_to "Edit", {controller: 'pictures', action: 'edit_form', id: photo.id}, class: "btn btn-default btn-block"%>
+               <%= link_to "Delete", {controller: 'pictures', action: 'destroy_row', id: photo.id}, method: 'delete', class: "btn btn-default btn-block"%>
+            </div>
+         </div>
+      <% end %>
+   </div>
+</div>
