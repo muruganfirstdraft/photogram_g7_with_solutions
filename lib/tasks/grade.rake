@@ -316,8 +316,6 @@ else
         header_outline_counter = header_outline_counter.next
         rspec_output_string_doc = `bundle exec rspec --order default --format documentation --color --tty` # "--require spec_helper"?
         puts rspec_output_string_doc
-      else
-        `cmd /c start #{results_url}`
       end
     elsif res.kind_of? Net::HTTPUnprocessableEntity
       puts "- ERROR: #{res.body}"#.error_format
