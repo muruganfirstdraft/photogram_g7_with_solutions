@@ -385,4 +385,4 @@ Rinse and repeat.
 If we can connect all these dots, we will have completed one entire database-backed CRUD web resource. Every web application is essentially just a collection of multiple of these resources; they are the building blocks of everything we do, and we'll just cruise from here.
 
 Struggle with it; **come up with questions**.
-1
+2
