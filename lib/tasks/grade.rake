@@ -64,7 +64,7 @@ if RUBY_PLATFORM =~ /darwin/
     header_outline_counter = header_outline_counter.next
     data = {
       project_token: project_token,
-      access_token: ENV['GRADED_PERSONAL_ACCESS_TOKEN'],
+      access_token: ENV['GRADES_PERSONAL_ACCESS_TOKEN'],
       test_output: rspec_output_json,
       checksums: {
         tests: checksum_tests,
@@ -263,7 +263,7 @@ else
     header_outline_counter = header_outline_counter.next
     data = {
       project_token: project_token,
-      access_token: ENV['GRADED_PERSONAL_ACCESS_TOKEN'],
+      access_token: ENV['GRADES_PERSONAL_ACCESS_TOKEN'],
       test_output: rspec_output_json,
       checksums: {
         tests: checksum_tests,
