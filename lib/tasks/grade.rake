@@ -37,27 +37,6 @@ if RUBY_PLATFORM =~ /darwin/
         file.puts "/#{student_token_filename_base}"
       end
     end
-    personal_access_token_filename = Rails.root.join(student_token_filename_base)
-    if File.file?(personal_access_token_filename)
-      student_config = YAML.load_file(personal_access_token_filename)
-      personal_access_token = student_config["personal_access_token"]
-    else
-      student_config = {}
-      personal_access_token = nil
-    end
-    if !personal_access_token
-      puts "Enter your access token for this project"
-      new_personal_access_token = ""
-      while new_personal_access_token == "" do
-        print "> "
-        new_personal_access_token = $stdin.gets.chomp.strip
-        if new_personal_access_token != ""
-          personal_access_token = new_personal_access_token
-          student_config["personal_access_token"] = personal_access_token
-          File.write(personal_access_token_filename, YAML.dump(student_config))
-        end
-      end
-    end
 
     header_outline_counter = "A"
     puts "* You are running tests and submitting the results."
@@ -68,7 +47,6 @@ if RUBY_PLATFORM =~ /darwin/
       puts
       puts "#{header_outline_counter}. READ PERSONAL/PROJECT SETTINGS".header_format
       header_outline_counter = header_outline_counter.next
-      puts "- Personal access token: #{personal_access_token} [#{student_token_filename_base}]"
       puts "- Project token: #{project_token} [#{config_file_name_base}]"
       puts "- Submission URL: #{submission_url} [#{config_file_name_base}]"
     end
@@ -86,7 +64,7 @@ if RUBY_PLATFORM =~ /darwin/
     header_outline_counter = header_outline_counter.next
     data = {
       project_token: project_token,
-      access_token: personal_access_token,
+      access_token: ENV['GRADED_PERSONAL_ACCESS_TOKEN'],
       test_output: rspec_output_json,
       checksums: {
         tests: checksum_tests,
@@ -258,27 +236,6 @@ else
         file.puts "/#{student_token_filename_base}"
       end
     end
-    personal_access_token_filename = Rails.root.join(student_token_filename_base)
-    if File.file?(personal_access_token_filename)
-      student_config = YAML.load_file(personal_access_token_filename)
-      personal_access_token = student_config["personal_access_token"]
-    else
-      student_config = {}
-      personal_access_token = nil
-    end
-    if !personal_access_token
-      puts "Enter your access token for this project"
-      new_personal_access_token = ""
-      while new_personal_access_token == "" do
-        print "> "
-        new_personal_access_token = $stdin.gets.chomp.strip
-        if new_personal_access_token != ""
-          personal_access_token = new_personal_access_token
-          student_config["personal_access_token"] = personal_access_token
-          File.write(personal_access_token_filename, YAML.dump(student_config))
-        end
-      end
-    end
 
     header_outline_counter = "A"
     puts "* You are running tests and submitting the results."
@@ -289,7 +246,6 @@ else
       puts
       puts "#{header_outline_counter}. READ PERSONAL/PROJECT SETTINGS"#.header_format
       header_outline_counter = header_outline_counter.next
-      puts "- Personal access token: #{personal_access_token} [#{student_token_filename_base}]"
       puts "- Project token: #{project_token} [#{config_file_name_base}]"
       puts "- Submission URL: #{submission_url} [#{config_file_name_base}]"
     end
@@ -307,7 +263,7 @@ else
     header_outline_counter = header_outline_counter.next
     data = {
       project_token: project_token,
-      access_token: personal_access_token,
+      access_token: ENV['GRADED_PERSONAL_ACCESS_TOKEN'],
       test_output: rspec_output_json,
       checksums: {
         tests: checksum_tests,
